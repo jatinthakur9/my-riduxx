@@ -1,7 +1,37 @@
 import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
 
+import { increment, decrement, reset } from "./features/counter/counterSlice";
 function App() {
-  return <div className="App">hello my name is jatin</div>;
+  const { count } = useSelector((state) => {
+    return state.counter;
+  });
+  const dispatch = useDispatch();
+  return (
+    <>
+      <h2>Count : {count}</h2>
+      <button
+        onClick={() => {
+          dispatch(increment());
+        }}
+      >
+        Increase{" "}
+      </button>
+      <button
+        onClick={() => {
+          dispatch(reset());
+        }}
+      >
+        Reset
+      </button>
+      <button
+        onClick={() => {
+          dispatch(decrement());
+        }}
+      >
+        Decrease
+      </button>
+    </>
+  );
 }
-
 export default App;
